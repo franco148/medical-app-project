@@ -5,12 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name="consultation_details")
 public class ConsultationDetail {
 
 	@Id
@@ -18,8 +19,7 @@ public class ConsultationDetail {
 	private int id;
 
 	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "id_consulta", nullable = false)
+	@ManyToOne(optional=false)
 	private Consultation consultation;
 
 	@Column(nullable = false, length = 70)

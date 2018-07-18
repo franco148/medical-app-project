@@ -9,36 +9,34 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 @Entity
+@Table(name="consultations")
 public class Consultation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@ManyToOne
-	@JoinColumn(name = "id_paciente", nullable = false)
+	@ManyToOne(optional=false)
 	private Patient patient;
 
-	@ManyToOne
-	@JoinColumn(name = "id_medico", nullable = false)
+	@ManyToOne(optional=false)
 	private Doctor doctor; 
 
-	@ManyToOne
-	@JoinColumn(name = "id_especialidad", nullable = false)
+	@ManyToOne(optional=false)
 	private Specialty specialty;
 
 	@JsonSerialize(using = ToStringSerializer.class)
 	private LocalDateTime fecha;
 
-	@OneToMany(mappedBy = "consulta", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+	@OneToMany(mappedBy = "consultation", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<ConsultationDetail> consultationDetails;
 

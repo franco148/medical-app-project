@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="medical_exams")
 public class MedicalExam {
 
 	@Id
@@ -14,7 +16,7 @@ public class MedicalExam {
 	private int id;
 
 	@Column(nullable = false, length = 50)
-	private String nombre;
+	private String name;
 
 	@Column(nullable = false, length = 250)
 	private String description;
@@ -29,12 +31,12 @@ public class MedicalExam {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {
