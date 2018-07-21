@@ -20,7 +20,7 @@ import com.fral.medapp.model.Specialty;
 import com.fral.medapp.service.SpecialtyService;
 
 @RestController
-@RequestMapping
+@RequestMapping("/specialties")
 public class SpecialtyRestController {
 
 	@Autowired
