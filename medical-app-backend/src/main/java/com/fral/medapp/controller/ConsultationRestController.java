@@ -3,8 +3,11 @@ package com.fral.medapp.controller;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
@@ -17,8 +20,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fral.medapp.dto.ConsultationDto;
+import com.fral.medapp.exception.EntityNotFoundException;
 import com.fral.medapp.model.Consultation;
 import com.fral.medapp.service.ConsultationService;
 
@@ -65,24 +70,21 @@ public class ConsultationRestController {
 
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Consultation> listarId(@PathVariable("id") Integer id) {
-		Consultation c = new Consultation();
-		try {
-			c = service.findById(id);
-		} catch (Exception e) {
-			return new ResponseEntity<Consultation>(c, HttpStatus.INTERNAL_SERVER_ERROR);
+		Consultation consultationResponse = service.findById(id);
+
+		if (consultationResponse == null) {
+			throw new EntityNotFoundException("Id: " + id);
 		}
 
-		return new ResponseEntity<Consultation>(c, HttpStatus.OK);
+		return new ResponseEntity<Consultation>(consultationResponse, HttpStatus.OK);
 	}
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Consultation> registrar(@RequestBody Consultation consulta) {
-		Consultation c = new Consultation();
-		try {
-			c = service.create(consulta);
-		} catch (Exception e) {
-			return new ResponseEntity<Consultation>(c, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<Consultation>(c, HttpStatus.OK);
+	public ResponseEntity<Object> registrar(@Valid @RequestBody Consultation consulta) {
+		Consultation savedConsultation = service.create(consulta);
+
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedConsultation.getId()).toUri();
+
+		return ResponseEntity.created(location).build();
 	}
 }

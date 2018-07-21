@@ -7,7 +7,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.fral.medapp.exception.EntityNotFoundException;
 import com.fral.medapp.model.Patient;
 import com.fral.medapp.service.PatientService;
 
@@ -39,11 +39,7 @@ public class PatientRestController {
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Patient>> listar() {
 		List<Patient> pacientes = new ArrayList<>();
-		try {
-			pacientes = service.getAll();
-		} catch (Exception e) {
-			return new ResponseEntity<List<Patient>>(pacientes, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		pacientes = service.getAll();
 		return new ResponseEntity<List<Patient>>(pacientes, HttpStatus.OK);
 	}
 
@@ -72,16 +68,10 @@ public class PatientRestController {
 	}
 
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Integer> actualizar(@RequestBody Patient paciente) {
-		int resultado = 0;
-		try {
-			service.update(paciente);
-			resultado = 1;
-		} catch (Exception e) {
-			resultado = 0;
-		}
+	public ResponseEntity<Object> actualizar(@Valid @RequestBody Patient paciente) {
+		service.update(paciente);
 
-		return new ResponseEntity<Integer>(resultado, HttpStatus.OK);
+		return new ResponseEntity<Object>(HttpStatus.OK);
 	}
 
 	@DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -90,8 +80,8 @@ public class PatientRestController {
 		Patient pac = service.findById(id);
 		if (pac == null) {
 			throw new EntityNotFoundException("ID: " + id);
-		} else {
-			service.delete(id);
-		}
+		} 
+		
+		service.delete(id);
 	}
 }
