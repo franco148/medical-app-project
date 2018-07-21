@@ -6,7 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Patient information")
 @Entity
 @Table(name="patients")
 public class Patient {
@@ -15,18 +20,28 @@ public class Patient {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(nullable=false, length=70)
+	@ApiModelProperty(notes = "Name should have at least 2 characters")
+	@Size(min = 2, max = 20, message = "Name should have at least 2 characters")
+	@Column(nullable=false, length=20)
 	private String name;
 	
+	@ApiModelProperty(notes = "Last Name should have at least 2 characters")
+	@Size(min = 2, max = 20, message = "Last Name should have at least 2 characters")
 	@Column(nullable=false, length=70)
 	private String lastName;
 	
+	@ApiModelProperty(notes = "DNI should have 8 characters")
+	@Size(min = 8, max = 8, message = "DNI should have 8 characters")
 	@Column(nullable=false, length=8)
 	private String dni;
 	
+	@ApiModelProperty(notes = "Address should have at least 3 characters")
+	@Size(min = 3, message = "Address should have at least 3 characters")
 	@Column(length=150)
 	private String address;
 	
+	@ApiModelProperty(notes = "Phone should have 9 characters")
+	@Size(min = 9, max = 9, message = "Phone should have 9 characters")
 	@Column(length=9)
 	private String phone;
 

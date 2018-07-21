@@ -1,10 +1,14 @@
 package com.fral.medapp.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +24,9 @@ public class MedicalExam {
 
 	@Column(nullable = false, length = 250)
 	private String description;
+	
+	@ManyToMany(mappedBy = "medicalExams")
+	private List<Consultation> consultations = new ArrayList<>();
 
 	
 	
@@ -45,5 +52,17 @@ public class MedicalExam {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Consultation> getConsultations() {
+		return consultations;
+	}
+
+	public void setConsultations(List<Consultation> consultations) {
+		this.consultations = consultations;
+	}
+	
+	public void addConsultation(Consultation consultation) {
+		this.consultations.add(consultation);
 	}
 }

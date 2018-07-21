@@ -1,6 +1,7 @@
 package com.fral.medapp.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -34,11 +38,19 @@ public class Consultation {
 	private Specialty specialty;
 
 	@JsonSerialize(using = ToStringSerializer.class)
-	private LocalDateTime fecha;
+	private LocalDateTime date;
 
 	@OneToMany(mappedBy = "consultation", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<ConsultationDetail> consultationDetails;
+	
+	@ManyToMany
+	@JoinTable(
+		name = "ConsultationExamsRelationships",
+		joinColumns = @JoinColumn(name = "consultationId"),
+		inverseJoinColumns = @JoinColumn(name = "medicalExamId")
+	)
+	private List<MedicalExam> medicalExams = new ArrayList<>();
 
 	
 	public int getId() {
@@ -71,6 +83,14 @@ public class Consultation {
 
 	public void setSpecialty(Specialty specialty) {
 		this.specialty = specialty;
+	}	
+
+	public LocalDateTime getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDateTime date) {
+		this.date = date;
 	}
 
 	public List<ConsultationDetail> getConsultationDetails() {
@@ -79,6 +99,18 @@ public class Consultation {
 
 	public void setConsultationDetails(List<ConsultationDetail> consultationDetails) {
 		this.consultationDetails = consultationDetails;
+	}
+
+	public List<MedicalExam> getMedicalExams() {
+		return medicalExams;
+	}
+
+	public void setMedicalExams(List<MedicalExam> medicalExams) {
+		this.medicalExams = medicalExams;
+	}
+	
+	public void addMedicalExam(MedicalExam medicalExam) {
+		this.medicalExams.add(medicalExam);
 	}
 
 }
