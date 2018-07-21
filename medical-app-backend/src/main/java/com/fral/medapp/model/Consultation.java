@@ -17,6 +17,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
@@ -38,6 +42,8 @@ public class Consultation {
 	private Specialty specialty;
 
 	@JsonSerialize(using = ToStringSerializer.class)
+	//@DateTimeFormat(iso = DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime date;
 
 	@OneToMany(mappedBy = "consultation", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
@@ -50,6 +56,7 @@ public class Consultation {
 		joinColumns = @JoinColumn(name = "consultationId"),
 		inverseJoinColumns = @JoinColumn(name = "medicalExamId")
 	)
+	//@JsonManagedReference
 	private List<MedicalExam> medicalExams = new ArrayList<>();
 
 	

@@ -7,7 +7,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.fral.medapp.exception.EntityNotFoundException;
 import com.fral.medapp.model.Patient;
 import com.fral.medapp.service.PatientService;
 

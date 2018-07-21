@@ -7,21 +7,21 @@ import com.fral.medapp.model.MedicalExam;
 
 public class ConsultationExamListDto {
 
-	private Consultation consulta;
-	private List<MedicalExam> lstExamen;
+	private Consultation consultation;
+	private List<MedicalExam> medicalExamsList;
 	
 	
 	
-	public Consultation getConsulta() {
-		return consulta;
+	public Consultation getConsultation() {
+		return consultation;
 	}
-	public void setConsulta(Consultation consulta) {
-		this.consulta = consulta;
+	public void setConsultation(Consultation consultation) {
+		this.consultation = consultation;
 	}
-	public List<MedicalExam> getLstExamen() {
-		return lstExamen;
+	public List<MedicalExam> getMedicalExamsList() {
+		return medicalExamsList;
 	}
-	public void setLstExamen(List<MedicalExam> lstExamen) {
-		this.lstExamen = lstExamen;
+	public void setMedicalExamsList(List<MedicalExam> medicalExamsList) {
+		this.medicalExamsList = medicalExamsList;
 	}
 }

@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="medical_exams")
 public class MedicalExam {
@@ -25,7 +28,9 @@ public class MedicalExam {
 	@Column(nullable = false, length = 250)
 	private String description;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "medicalExams")
+	//@JsonBackReference
 	private List<Consultation> consultations = new ArrayList<>();
 
 	
