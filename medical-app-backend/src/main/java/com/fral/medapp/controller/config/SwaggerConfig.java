@@ -16,9 +16,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-	public static final Contact DEFAULT_CONTACT = new Contact("MitoCode Network", "https://www.mitocode.com",
-			"cursos@mitocodenetwork.com");
-	public static final ApiInfo DEFAULT_API_INFO = new ApiInfo("MedAapp Api Documentation", "Mediapp Api Documentation", "1.0",
+	public static final Contact DEFAULT_CONTACT = new Contact("eXtreme Team", "https://www.eextreme.com",
+			"learn@eextreme.com");
+	public static final ApiInfo DEFAULT_API_INFO = new ApiInfo("MedApp Api Documentation", "MedApp Api Documentation", "1.0",
 			"PREMIUM", DEFAULT_CONTACT, "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0",
 			new ArrayList<VendorExtension>());
 
