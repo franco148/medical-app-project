@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { MaterialModule } from './material/material.module';
 
 
 import { AppComponent } from './app.component';
 import { PatientComponent } from './components/patient/patient.component';
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { AppRoutingModule } from './/app-routing.module';
   imports: [
     BrowserModule,
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
