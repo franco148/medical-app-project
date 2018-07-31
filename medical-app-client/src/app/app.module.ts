@@ -6,6 +6,7 @@ import { MaterialModule } from './material/material.module';
 
 import { AppComponent } from './app.component';
 import { PatientComponent } from './components/patient/patient.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { PatientComponent } from './components/patient/patient.component';
   ],
   imports: [
     BrowserModule,
-    MaterialModule
+    MaterialModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
