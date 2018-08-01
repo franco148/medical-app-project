@@ -30,7 +30,6 @@ export class PatientService {
   }
 
   edit(patient: Patient) {
-    console.log('Send to server: ', patient);
     return this.http.put(this.serverUrl, patient);
   }
 

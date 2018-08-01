@@ -29,7 +29,7 @@ export class PatientComponent implements OnInit {
           this.dataSource.sort = this.sort;
 
           this.patientService.message.subscribe(data => {
-            this.snackBar.open(data, 'Aviso', { duration: 2000 });
+            this.snackBar.open(data, 'Info', { duration: 2000 });
           });
         });
 
