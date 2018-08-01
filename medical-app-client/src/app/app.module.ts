@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { PatientComponent } from './components/patient/patient.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PatientEditionComponent } from './components/patient/patient-edition/patient-edition.component';
+import { ConsultationComponent } from './components/consultation/consultation.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PatientComponent,
-    PatientEditionComponent
+    PatientEditionComponent,
+    ConsultationComponent
   ],
   imports: [
     BrowserModule,
