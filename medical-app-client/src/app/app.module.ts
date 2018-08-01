@@ -10,12 +10,14 @@ import { MaterialModule } from './material/material.module';
 import { AppComponent } from './app.component';
 import { PatientComponent } from './components/patient/patient.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PatientEditionComponent } from './components/patient/patient-edition/patient-edition.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PatientComponent
+    PatientComponent,
+    PatientEditionComponent
   ],
   imports: [
     BrowserModule,
