@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PatientEditionComponent } from './components/patient/patient-edition/patient-edition.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
 import { SpecialtyComponent } from './components/specialty/specialty.component';
+import { ExamComponent } from './components/exam/exam.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { SpecialtyComponent } from './components/specialty/specialty.component';
     PatientComponent,
     PatientEditionComponent,
     ConsultationComponent,
-    SpecialtyComponent
+    SpecialtyComponent,
+    ExamComponent
   ],
   imports: [
     BrowserModule,
