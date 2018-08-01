@@ -12,6 +12,7 @@ import { PatientComponent } from './components/patient/patient.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PatientEditionComponent } from './components/patient/patient-edition/patient-edition.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
+import { SpecialtyComponent } from './components/specialty/specialty.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ConsultationComponent } from './components/consultation/consultation.co
     AppComponent,
     PatientComponent,
     PatientEditionComponent,
-    ConsultationComponent
+    ConsultationComponent,
+    SpecialtyComponent
   ],
   imports: [
     BrowserModule,
