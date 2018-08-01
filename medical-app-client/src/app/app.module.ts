@@ -35,6 +35,7 @@ import { DoctorDialogComponent } from './components/doctor/doctor-dialog/doctor-
     SpecialtyEditionComponent,
     DoctorDialogComponent
   ],
+  entryComponents: [ DoctorDialogComponent ],
   imports: [
     BrowserModule,
     MaterialModule,
