@@ -59,12 +59,12 @@ export class PatientEditionComponent implements OnInit {
   }
 
   operate() {
-    this.patient.id = this.form.valid['id'];
-    this.patient.name = this.form.valid['names'];
-    this.patient.lastName = this.form.valid['lastNames'];
-    this.patient.dni = this.form.valid['dni'];
-    this.patient.address = this.form.valid['address'];
-    this.patient.phone = this.form.valid['phone'];
+    this.patient.id = this.form.value['id'];
+    this.patient.name = this.form.value['names'];
+    this.patient.lastName = this.form.value['lastNames'];
+    this.patient.dni = this.form.value['dni'];
+    this.patient.address = this.form.value['address'];
+    this.patient.phone = this.form.value['phone'];
 
     if (this.isEdited) {
       // Then update
