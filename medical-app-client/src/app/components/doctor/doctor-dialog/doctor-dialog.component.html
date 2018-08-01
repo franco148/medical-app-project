@@ -1,3 +1,13 @@
-<p>
-  doctor-dialog works!
-</p>
+<div class="example-container">
+    <mat-form-field>
+        <input matInput placeholder="Nombres" [(ngModel)]="doctor.name">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Apellidos" [(ngModel)]="doctor.lastName">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="CMP" [(ngModel)]="doctor.cmp">
+    </mat-form-field>
+</div>
+<button mat-raised-button color="primary" (click)="operate()">Aceptar</button>
+<button mat-raised-button color="accent" (click)="cancel()">Cancelar</button>

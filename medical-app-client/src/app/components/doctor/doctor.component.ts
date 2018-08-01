@@ -49,14 +49,10 @@ export class DoctorComponent implements OnInit {
 
   remove(id: number) {
     this.doctorService.remove(id).subscribe(result => {
-      if (result === 1) {
-        this.doctorService.findAll().subscribe(doctors => {
-          this.doctorService.doctorChanges.next(doctors);
-          this.doctorService.message.next(`Doctor with Id: ${id} has been removed successfully`);
-        });
-      } else {
-        this.doctorService.message.next(`Doctor with Id: ${id} could not be removed.`);
-      }
+      this.doctorService.findAll().subscribe(doctors => {
+        this.doctorService.doctorChanges.next(doctors);
+        this.doctorService.message.next(`Doctor with Id: ${id} has been removed successfully`);
+      });
     });
   }
 

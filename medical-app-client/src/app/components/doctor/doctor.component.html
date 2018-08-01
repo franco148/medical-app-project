@@ -38,7 +38,7 @@
             <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <button mat-button color="primary" (click)="openDialog(row)">Actualizar</button>
-                <button mat-button color="accent" (click)="remove(row)">Eliminar</button>
+                <button mat-button color="accent" (click)="remove(row.id)">Eliminar</button>
             </mat-cell>
         </ng-container>
 
