@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { HOST } from './../shared/variables.constant';
 import { Patient } from '../components/patient/patient.model';
+import { Subject } from '../../../node_modules/rxjs';
 
 
 @Injectable({
@@ -10,7 +11,9 @@ import { Patient } from '../components/patient/patient.model';
 })
 export class PatientService {
 
-  serverUrl: string = `${HOST}/patients`;
+  patientsChange = new Subject<Patient[]>();
+  message = new Subject<string>();
+  serverUrl = `${HOST}/patients`;
 
   constructor(private http: HttpClient) { }
 
