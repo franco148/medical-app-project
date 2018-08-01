@@ -14,6 +14,7 @@ import { PatientEditionComponent } from './components/patient/patient-edition/pa
 import { ConsultationComponent } from './components/consultation/consultation.component';
 import { SpecialtyComponent } from './components/specialty/specialty.component';
 import { ExamComponent } from './components/exam/exam.component';
+import { DoctorComponent } from './components/doctor/doctor.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ExamComponent } from './components/exam/exam.component';
     PatientEditionComponent,
     ConsultationComponent,
     SpecialtyComponent,
-    ExamComponent
+    ExamComponent,
+    DoctorComponent
   ],
   imports: [
     BrowserModule,
