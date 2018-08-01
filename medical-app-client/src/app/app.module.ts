@@ -18,6 +18,7 @@ import { DoctorComponent } from './components/doctor/doctor.component';
 import { ForbiddenPageComponent } from './components/forbidden-page/forbidden-page.component';
 import { ExamEditionComponent } from './components/exam/exam-edition/exam-edition.component';
 import { SpecialtyEditionComponent } from './components/specialty/specialty-edition/specialty-edition.component';
+import { DoctorDialogComponent } from './components/doctor/doctor-dialog/doctor-dialog.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SpecialtyEditionComponent } from './components/specialty/specialty-edit
     DoctorComponent,
     ForbiddenPageComponent,
     ExamEditionComponent,
-    SpecialtyEditionComponent
+    SpecialtyEditionComponent,
+    DoctorDialogComponent
   ],
   imports: [
     BrowserModule,
