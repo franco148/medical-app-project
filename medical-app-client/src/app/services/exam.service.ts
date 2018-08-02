@@ -11,15 +11,15 @@ export class ExamService {
 
   doctorChanges = new Subject<Exam[]>();
   message = new Subject<string>();
-  serverUrl = `${HOST}/doctors`;
+  serverUrl = `${HOST}/medical-exams`;
 
   constructor(private http: HttpClient) { }
 
-  findAllPatients() {
+  findAll() {
     return this.http.get<Exam[]>(this.serverUrl);
   }
 
-  findPatientById(id: number) {
+  findById(id: number) {
     return this.http.get<Exam>(`${this.serverUrl}/${id}`);
   }
 

@@ -17,11 +17,11 @@ export class PatientService {
 
   constructor(private http: HttpClient) { }
 
-  findAllPatients() {
+  findAll() {
     return this.http.get<Patient[]>(this.serverUrl);
   }
 
-  findPatientById(id: number) {
+  findById(id: number) {
     return this.http.get<Patient>(`${this.serverUrl}/${id}`);
   }
 

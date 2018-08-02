@@ -44,7 +44,7 @@ export class PatientEditionComponent implements OnInit {
 
   private initForm() {
     if (this.isEdited) {
-      this.patientService.findPatientById(this.id).subscribe(data => {
+      this.patientService.findById(this.id).subscribe(data => {
 
         this.form = new FormGroup({
           'id': new FormControl(data.id),
@@ -70,7 +70,7 @@ export class PatientEditionComponent implements OnInit {
       // Then update
       this.patientService.edit(this.patient).subscribe(data => {
 
-        this.patientService.findAllPatients().subscribe(patients => {
+        this.patientService.findAll().subscribe(patients => {
           this.patientService.patientsChange.next(patients);
           this.patientService.message.next('Patient has been updated successfully');
         });
@@ -79,7 +79,7 @@ export class PatientEditionComponent implements OnInit {
       // Then insert
       this.patientService.register(this.patient).subscribe(data => {
 
-        this.patientService.findAllPatients().subscribe(patients => {
+        this.patientService.findAll().subscribe(patients => {
           this.patientService.patientsChange.next(patients);
           this.patientService.message.next('Patient has been added successfully');
         });
