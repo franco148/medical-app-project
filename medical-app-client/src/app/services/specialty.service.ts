@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SpecialtyService {
 
-  doctorChanges = new Subject<Specialty[]>();
+  specialtyChanges = new Subject<Specialty[]>();
   message = new Subject<string>();
   serverUrl = `${HOST}/specialties`;
 
