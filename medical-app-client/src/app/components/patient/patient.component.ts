@@ -33,7 +33,7 @@ export class PatientComponent implements OnInit {
           });
         });
 
-    this.patientService.findAllPatients().subscribe(patientData => {
+    this.patientService.findAll().subscribe(patientData => {
       this.patientsList = patientData;
       this.dataSource = new MatTableDataSource(this.patientsList);
       this.dataSource.paginator = this.paginator;
@@ -50,7 +50,7 @@ export class PatientComponent implements OnInit {
 
   remove(id: number) {
     this.patientService.remove(id).subscribe(result => {
-      this.patientService.findAllPatients().subscribe(data => {
+      this.patientService.findAll().subscribe(data => {
         this.patientsList = data;
         this.dataSource = new MatTableDataSource(this.patientsList);
         this.dataSource.paginator = this.paginator;

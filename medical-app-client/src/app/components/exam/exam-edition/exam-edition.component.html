@@ -1,3 +1,27 @@
-<p>
-  exam-edition works!
-</p>
+<form class="example-container" [formGroup]="form" (ngSubmit)="operate()" #loginForm="ngForm">
+
+    <div [hidden]="true">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="ID" required formControlName="id">
+        </mat-form-field>
+    </div>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="name" required formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="description" required formControlName="description">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+    <mat-icon>done</mat-icon>
+    <span>Ok</span>
+  </button>
+    <button mat-raised-button color="accent" routerLink='/exam' type="button">
+    <mat-icon>close</mat-icon>
+    <span>Cancel</span>
+  </button>
+</form>
+
+<br/>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup , FormControl } from '../../../../../node_modules/@angular/forms';
+import { FormGroup , FormControl, Validators } from '../../../../../node_modules/@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Patient } from '../patient.model';
@@ -25,11 +25,11 @@ export class PatientEditionComponent implements OnInit {
 
     this.form = new FormGroup({
       'id': new FormControl(0),
-      'names': new FormControl(''),
-      'lastNames': new FormControl(''),
-      'dni': new FormControl(''),
-      'address': new FormControl(''),
-      'phone': new FormControl('')
+      'names': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(70)]),
+      'lastNames': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(70)]),
+      'dni': new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
+      'address': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
+      'phone': new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(9)])
     });
   }
 
@@ -44,7 +44,7 @@ export class PatientEditionComponent implements OnInit {
 
   private initForm() {
     if (this.isEdited) {
-      this.patientService.findPatientById(this.id).subscribe(data => {
+      this.patientService.findById(this.id).subscribe(data => {
 
         this.form = new FormGroup({
           'id': new FormControl(data.id),
@@ -70,7 +70,7 @@ export class PatientEditionComponent implements OnInit {
       // Then update
       this.patientService.edit(this.patient).subscribe(data => {
 
-        this.patientService.findAllPatients().subscribe(patients => {
+        this.patientService.findAll().subscribe(patients => {
           this.patientService.patientsChange.next(patients);
           this.patientService.message.next('Patient has been updated successfully');
         });
@@ -79,7 +79,7 @@ export class PatientEditionComponent implements OnInit {
       // Then insert
       this.patientService.register(this.patient).subscribe(data => {
 
-        this.patientService.findAllPatients().subscribe(patients => {
+        this.patientService.findAll().subscribe(patients => {
           this.patientService.patientsChange.next(patients);
           this.patientService.message.next('Patient has been added successfully');
         });

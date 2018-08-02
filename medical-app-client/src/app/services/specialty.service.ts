@@ -9,17 +9,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SpecialtyService {
 
-  doctorChanges = new Subject<Specialty[]>();
+  specialtyChanges = new Subject<Specialty[]>();
   message = new Subject<string>();
-  serverUrl = `${HOST}/doctors`;
+  serverUrl = `${HOST}/specialties`;
 
   constructor(private http: HttpClient) { }
 
-  findAllPatients() {
+  findAll() {
     return this.http.get<Specialty[]>(this.serverUrl);
   }
 
-  findPatientById(id: number) {
+  findById(id: number) {
     return this.http.get<Specialty>(`${this.serverUrl}/${id}`);
   }
 

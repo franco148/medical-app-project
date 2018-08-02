@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { MaterialModule } from './material/material.module';
@@ -19,6 +19,7 @@ import { ForbiddenPageComponent } from './components/forbidden-page/forbidden-pa
 import { ExamEditionComponent } from './components/exam/exam-edition/exam-edition.component';
 import { SpecialtyEditionComponent } from './components/specialty/specialty-edition/specialty-edition.component';
 import { DoctorDialogComponent } from './components/doctor/doctor-dialog/doctor-dialog.component';
+import { ServerErrors } from './shared/server-errors.interceptor';
 
 
 @NgModule({
@@ -44,7 +45,13 @@ import { DoctorDialogComponent } from './components/doctor/doctor-dialog/doctor-
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServerErrors,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
